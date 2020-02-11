@@ -15,6 +15,7 @@ class AddAccount extends Component {
             bankBranch:event.target.elements.bankBranch.value,
         }
         this.props.addNewAccount(account)
+        this.props.history.push('/')
     }
     render() {
         return (

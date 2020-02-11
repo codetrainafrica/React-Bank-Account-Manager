@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect} from 'react-redux'
 import { updateAccountInfo } from './redux/actions'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class EditAccount extends Component {
     updateAccount = (event)=>{
@@ -62,5 +62,4 @@ const mapStateToProps = (state)=> {
     }
 }
 
-const App =  connect(mapStateToProps, mapDispatchToProps)(EditAccount)
-export default withRouter(App)
+export default connect(mapStateToProps, mapDispatchToProps)(EditAccount)
