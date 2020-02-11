@@ -4,3 +4,10 @@ export function addNewAccount(account){
         payload:account
     }
 }
+
+export function removeAccount(id){
+    return {
+        type:"DELETE_ACCOUNT",
+        payload:id
+    }
+}
