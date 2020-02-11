@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import AddAccount from './AddAccount';
-
+import { connect} from 'react-redux'
 class Home extends React.Component {
     render(){
         return (
@@ -19,16 +18,27 @@ class Home extends React.Component {
                     <th>Account Bank Branch</th>
                 </tr>
 
-                <tr>
-                    <td>Bob Marley</td>
-                    <td>278044403040</td>
-                    <td>Jamaican National Bank</td>
-                    <td>Wee Junction</td>
-                </tr>
+                {this.props.accounts.map(account=>{
+                    return (
+                    <tr>
+                        <td>{account.accountName}</td>
+                    <td>{account.accountNumber}</td>
+                    <td>{account.bankName}</td>
+                        <td>{account.bankBranch}</td>
+                    </tr>
+                    )
+                })}
             </table>
             </div>
         )
     }
 }
 
-export default Home;
+const mapStateToProps = (state)=>{
+    console.log(state)
+    return {
+        accounts:state
+    }
+}
+
+export default connect(mapStateToProps, {})(Home);

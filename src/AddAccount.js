@@ -1,10 +1,27 @@
 import React, { Component } from 'react'
+import { connect} from 'react-redux'
+import { addNewAccount } from './redux/actions'
+import { bindActionCreators } from 'redux'
+import { Link } from 'react-router-dom'
 
-export default class AddAccount extends Component {
+class AddAccount extends Component {
+    addAccount = (event)=>{
+        event.preventDefault()
+        let account = {
+            accountName:event.target.elements.accountName.value,
+            accountNumber:event.target.elements.accountNumber.value,
+            bankName:event.target.elements.bankName.value,
+            bankBranch:event.target.elements.bankBranch.value,
+        }
+        this.props.addNewAccount(account)
+    }
     render() {
         return (
-
-            <form>
+            
+            <form onSubmit={this.addAccount}>
+                <Link to="/">
+                    <p>Accounts</p>
+                </Link>
                 <h1>Add new Account</h1>
                 <div>
                     <label>Account Name</label>
@@ -27,3 +44,9 @@ export default class AddAccount extends Component {
         )
     }
 }
+
+const mapDispatchToProps = {
+    addNewAccount
+}
+
+export default connect(null, mapDispatchToProps)(AddAccount)
