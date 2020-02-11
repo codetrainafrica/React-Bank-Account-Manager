@@ -14,6 +14,7 @@ class Home extends React.Component {
                 <Link to="/add">
                     <p>Add Account</p>
                 </Link>
+
             </div>
             <table>
                 <tr>
@@ -30,8 +31,7 @@ class Home extends React.Component {
                     <td>{account.accountNumber}</td>
                     <td>{account.bankName}</td>
                     <td>{account.bankBranch}</td>
-                    <td>{account.id}</td>
-                    <td><a onClick={()=>this.deleteAccount(account.id)}>Delete</a> <a>Edit</a></td>
+                    <td><a onClick={()=>this.deleteAccount(account.id)}>Delete</a>  |  <Link to={"/edit/" + account.id}>Edit</Link></td>
                     </tr>
                     )
                 })}

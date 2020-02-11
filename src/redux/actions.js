@@ -11,3 +11,10 @@ export function removeAccount(id){
         payload:id
     }
 }
+
+export function updateAccountInfo(account){
+    return {
+        type:"UPDATE_ACCOUNT",
+        payload:account
+    }
+}

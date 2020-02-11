@@ -22,6 +22,16 @@ export default function(state = initalState, action){
                 return item.id!==action.payload
             })
             return accounts;
+
+        case "UPDATE_ACCOUNT":
+            let newAccounts = state.map(item=>{
+                if(item.id===action.payload.id){
+                    return action.payload;
+                }else{
+                    return item;
+                }
+            });
+            return newAccounts;
         default:
             return state;
     }
