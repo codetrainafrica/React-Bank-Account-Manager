@@ -1,37 +1,39 @@
-let initalState = [
-    {accountName:"Joseph",
-    accountNumber:"34455545", 
-    bankName: "Bank", bankBranch:
-     "Acccra",
-     id: "4444"
+let initialState = [
+    {
+        accountName: "Davinci",
+        accountNumber:"00000000",
+        bankName:"Rome Community Bank",
+        bankBranch:"Rome Junction",
+        id:"2343"
     },
-    {accountName:"The manager",
-    accountNumber:"000000000", 
-    bankName: "The Bank", bankBranch:
-     "The Branch",
-     id:"sffsd"
-    },
+
+    {
+        accountName: "Pablo",
+        accountNumber:"111111111",
+        bankName:"Mexico National Bank",
+        bankBranch:"Escoba Junction",
+        id:"54645"
+    }
 ]
 
-export default function(state = initalState, action){
+
+export default (state = initialState, action)=>{
     switch(action.type){
         case "ADD_ACCOUNT":
-            return [...state, action.payload];
-        case "DELETE_ACCOUNT":
-            let accounts = state.filter(item=>{
-                return item.id!==action.payload
-            })
-            return accounts;
+            console.log('add')
+            return [...state, action.payload]
 
-        case "UPDATE_ACCOUNT":
-            let newAccounts = state.map(item=>{
-                if(item.id===action.payload.id){
+        case "DELETE_ACCOUNT":
+             return state.filter((account)=>{
+                 return account.id!==action.payload
+             })
+        case "EDIT_ACCOUNT":
+            return state.map(account=>{
+                if(account.id===action.payload.id)
                     return action.payload;
-                }else{
-                    return item;
-                }
-            });
-            return newAccounts;
+                return account;
+
+            })
         default:
             return state;
     }

@@ -1,55 +1,46 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { connect} from 'react-redux'
-import { removeAccount } from './redux/actions'
-class Home extends React.Component {
-    
-    deleteAccount = (id)=>{
-        this.props.removeAccount(id)
+import { connect } from 'react-redux'
+import { deleteAccount } from './redux/actions'
+
+export class Home extends Component {
+    handleOnDelete = (id)=>{
+        this.props.deleteAccount(id)
     }
-    render(){
+    render() {
         return (
             <div>
-                <div>
-                <Link to="/add">
-                    <p>Add Account</p>
-                </Link>
+                <Link to="/add">Add Account</Link>
 
-            </div>
-            <table>
-                <tr>
-                    <th>Account Name</th>
-                    <th>Account Number</th>
-                    <th>Account Bank Name</th>
-                    <th>Account Bank Branch</th>
-                </tr>
-
-                {this.props.accounts.map(account=>{
-                    return (
+                <table>
                     <tr>
-                        <td>{account.accountName}</td>
-                    <td>{account.accountNumber}</td>
-                    <td>{account.bankName}</td>
-                    <td>{account.bankBranch}</td>
-                    <td><a onClick={()=>this.deleteAccount(account.id)}>Delete</a>  |  <Link to={"/edit/" + account.id}>Edit</Link></td>
+                        <th>Accout Name</th>
+                        <th>Accout Number</th>
+                        <th>Bank Name</th>
+                        <th>Bank Branch</th>
+                        <td>Actions</td>
                     </tr>
-                    )
-                })}
-            </table>
+
+                    {this.props.accounts.map(account=>{
+                        return <tr>
+                            <td>{account.accountName}</td>
+                            <td>{account.accountNumber}</td>
+                            <td>{account.bankName}</td>
+                            <td>{account.bankBranch}</td>
+                            <td><Link to={`/edit/${account.id}`}>Edit Account</Link> | <a onClick={()=>{this.handleOnDelete(account.id)}}>Delete</a></td>
+                        </tr>
+                    })}
+                </table>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state)=>{
-    console.log(state)
-    return {
+    return{
         accounts:state
     }
 }
 
-const mapDispatchToProps = {
-    removeAccount
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default  connect(mapStateToProps, {deleteAccount})(Home)

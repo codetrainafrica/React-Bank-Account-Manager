@@ -1,20 +1,49 @@
-export function addNewAccount(account){
-    return {
-        type:"ADD_ACCOUNT",
-        payload:account
+// 
+
+
+
+// export const addNewAccount = async(account)=>{
+//     let getData = new Promise((resolve,regect)=>{
+//         setTimeout(()=>{
+//             resolve("Good")
+//         }, 5000)
+//     })
+
+//     await getData.then(()=>{
+//         console.log("Hello here")
+//     })
+//     .catch((e)=>{})
+
+//     return {
+//         type:"ADD_ACCOUNT",
+//         payload:account
+//     }
+// }
+
+
+
+export const addNewAccount = (account)=>{
+
+    return async(dispatch, getState,getFirestore)=>{
+        let firestore = getFirestore()
+        await firestore.collection("banks").add(account)
+        dispatch({
+            type:"ADD_ACCOUNT",
+            payload:account
+        })
     }
 }
 
-export function removeAccount(id){
+export const deleteAccount = (id)=>{
     return {
         type:"DELETE_ACCOUNT",
         payload:id
     }
 }
 
-export function updateAccountInfo(account){
+export const editAccount = (account)=>{
     return {
-        type:"UPDATE_ACCOUNT",
+        type:"EDIT_ACCOUNT",
         payload:account
     }
 }
