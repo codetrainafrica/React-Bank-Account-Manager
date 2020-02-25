@@ -1,20 +1,7 @@
-let initialState = [
-    {
-        accountName: "Davinci",
-        accountNumber:"00000000",
-        bankName:"Rome Community Bank",
-        bankBranch:"Rome Junction",
-        id:"2343"
-    },
-
-    {
-        accountName: "Pablo",
-        accountNumber:"111111111",
-        bankName:"Mexico National Bank",
-        bankBranch:"Escoba Junction",
-        id:"54645"
-    }
-]
+let initialState = {
+    loading:true,
+    accounts: []
+}
 
 
 export default (state = initialState, action)=>{
@@ -34,6 +21,8 @@ export default (state = initialState, action)=>{
                 return account;
 
             })
+        case "UPDATE_ALL_ACCOUNTS":
+            return {accounts:action.payload, loading:false}
         default:
             return state;
     }

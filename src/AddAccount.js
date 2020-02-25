@@ -6,7 +6,6 @@ export class AddAccount extends Component {
     handleOnSubmit = (event)=>{
         event.preventDefault();
         let newAccount = {
-            id:Math.random().toString(36).substring(7),
             accountName: event.target.elements.accountName.value,
             accountNumber: event.target.elements.accountNumber.value,
             bankName: event.target.elements.bankName.value,

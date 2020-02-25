@@ -60,7 +60,7 @@ export class EditAccount extends Component {
 
 const mapStateToProps = (state)=>{
     return {
-        accounts:state
+        accounts:state.accounts
     }
 }
 

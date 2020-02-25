@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deleteAccount } from './redux/actions'
+import { deleteAccount, getAllAccounts } from './redux/actions'
 
 export class Home extends Component {
     handleOnDelete = (id)=>{
         this.props.deleteAccount(id)
+    }
+    componentDidMount(){
+        this.props.getAllAccounts()
     }
     render() {
         return (
@@ -20,7 +23,7 @@ export class Home extends Component {
                         <th>Bank Branch</th>
                         <td>Actions</td>
                     </tr>
-
+                    {this.props.loading && <p>Loading...</p>}
                     {this.props.accounts.map(account=>{
                         return <tr>
                             <td>{account.accountName}</td>
@@ -37,10 +40,9 @@ export class Home extends Component {
 }
 
 const mapStateToProps = (state)=>{
-    return{
-        accounts:state
-    }
+    console.log(state)
+    return state
 }
 
 
-export default  connect(mapStateToProps, {deleteAccount})(Home)
+export default connect(mapStateToProps, {deleteAccount, getAllAccounts})(Home)
