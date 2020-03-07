@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addNewAccount } from './redux/actions'
+import { addNewAccount } from './redux/actions/actions'
 export class AddAccount extends Component {
 
     handleOnSubmit = (event)=>{

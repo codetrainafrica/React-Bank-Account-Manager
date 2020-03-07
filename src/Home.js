@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deleteAccount, getAllAccounts } from './redux/actions'
+import { deleteAccount, getAllAccounts } from './redux/actions/actions'
+import { signOut } from './redux/actions/authAction'
 
 export class Home extends Component {
     handleOnDelete = (id)=>{
@@ -11,9 +12,14 @@ export class Home extends Component {
         this.props.getAllAccounts()
     }
     render() {
+        let name = this.props.auth.displayName || this.props.auth.email
         return (
             <div>
+                <div>
+                <p>Welcome to your dashboard, {name}</p>
+                </div>
                 <Link to="/add">Add Account</Link>
+                <Link onClick={this.props.signOut}>Logout</Link>
 
                 <table>
                     <tr>
@@ -41,8 +47,8 @@ export class Home extends Component {
 
 const mapStateToProps = (state)=>{
     console.log(state)
-    return state
+    return {accounts:state.bank.accounts, auth:state.firebase.auth}
 }
 
 
-export default connect(mapStateToProps, {deleteAccount, getAllAccounts})(Home)
+export default connect(mapStateToProps, {deleteAccount, getAllAccounts,signOut})(Home)

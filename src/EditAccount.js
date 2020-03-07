@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { editAccount } from './redux/actions';
+import { editAccount } from './redux/actions/actions';
 
 export class EditAccount extends Component {
 
@@ -60,7 +60,7 @@ export class EditAccount extends Component {
 
 const mapStateToProps = (state)=>{
     return {
-        accounts:state.accounts
+        accounts:state.bank.accounts
     }
 }
 
